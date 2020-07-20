@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import sveltePreprocessor from 'svelte-preprocess'
 import postcss from 'rollup-plugin-postcss'
+import analyze from 'rollup-plugin-analyzer'
 const production = !process.env.ROLLUP_WATCH
 
 export default {
@@ -54,6 +55,7 @@ export default {
     // If we're building for production (npm run build
     // instead of npm run dev), minify
     production && terser(),
+    analyze(),
   ],
   watch: {
     clearScreen: false,

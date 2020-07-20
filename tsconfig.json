@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "strict": true
   },
   "include": [
     "src"
