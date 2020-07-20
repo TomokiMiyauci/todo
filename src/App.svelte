@@ -1,29 +1,36 @@
 <script lang="typescript">
+  import { mdiPlaylistEdit } from '@mdi/js'
+  import MdiPlaylistEdit from './components/MdiPlaylistEdit.svelte'
+  import MdiCloseCircle from './components/MdiCloseCircle.svelte'
+  import MdiSend from './components/MdiSend.svelte'
+  import { fade } from 'svelte/transition'
+  import { flip } from 'svelte/animate'
   const NA = 1
 
-  const a = (): HTMLDivElement => {
-    return document.createElement('div')
-  }
-
-
   let text = ''
-  let list = [{
-    text: 'hello',
-    done: false
-  }]
+  let list = [{ id: 0, text: 'hello', done: false }]
 
-  const onEnter = (e: KeyboardEvent):void => {
-    if(e.key !== 'Enter' || !text) return
+  $: todoList = list.filter((l) => !l.done)
+  $: doneList = list.filter((l) => l.done)
+
+  const onEnter = (e: KeyboardEvent): void => {
+    if (e.key !== 'Enter' || !text) return
     add(text)
   }
 
-  const add = (t: string):void => {
-    if(!t) return
-    list = [...list, {text: t, done: false}]
+  const add = (t: string): void => {
+    if (!t) return
+    list = [...list, { id: list.length, text: t, done: false }]
     text = ''
   }
 
+  const onClick = () => {
+    alert()
+  }
 
+  const check = (index: number, isCheck: boolean = true) => {
+    list[index].done = isCheck
+  }
 </script>
 
 <main>
@@ -33,16 +40,45 @@
     <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
     to learn how to build Svelte apps.
   </p>
-  <input placeholder="Enter todo" bind:value={text} type="text" on:keydown={onEnter} /><button disabled={!text} type="button" on:click={add(text)}>Send</button>
-  <h2>TODO</h2>
-  {#each list as li,index (index)}
-<p>{li.text}</p>
-<p>{li.done}</p>
-{/each}
+  <div class="input-box">
+    <div class="box">
+
+      <MdiPlaylistEdit />
+      <input placeholder="Enter todo" bind:value="{text}" type="text" on:keydown="{onEnter}" />
+      <div style="width: 24px; height: 24px;">
+        {#if text}
+          <div transition:fade>
+            <MdiCloseCircle on:click="{onClick}" />
+          </div>
+        {/if}
+      </div>
+
+    </div>
+    <button disabled="{!text}" type="button" on:click="{add(text)}">
+      <MdiSend />
+      Send
+    </button>
+
+  </div>
+  <div class="container">
+    <h2>TODO</h2>
+    <div class="child">
+      {#if !todoList.length}
+        <div>No</div>
+      {/if}
+      {#each todoList as li (li.id)}
+        <div animate:flip on:click="{check(li.id)}" class="list">{li.text}</div>
+      {/each}
+    </div>
+    <h2>DONE</h2>
+    <div class="child">
+      {#each doneList as li (li.id)}
+        <p class="list" animate:flip on:click="{check(li.id, false)}">{li.text}</p>
+      {/each}
+    </div>
+  </div>
 
 </main>
-
-
 
 <style lang="scss">
   main {
@@ -61,20 +97,53 @@
 
   input {
     margin: 0;
+    font-size: 1.2rem;
+    border: none;
     border-radius: 0;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    outline: none;
 
     &:focus {
       outline: none;
     }
   }
 
+  .list {
+    display: flex;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .box {
+    display: inline-flex;
+    padding: 10px;
+  }
+
+  .input-box {
+    display: inline-flex;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  .container {
+    display: flex;
+  }
+
+  .child {
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    padding: 12px;
+  }
+
   button {
-    margin: 0;
-    border-radius: 0;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    border: none;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
     transition: all 0.3s;
 
     &:hover {
