@@ -219,6 +219,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mdi/js@npm:^5.3.45":
+  version: 5.3.45
+  resolution: "@mdi/js@npm:5.3.45"
+  checksum: dc02a454abc63846cd69e05a3675c87080209612ec289a2592dbc5a089680fa3e99d310b9f5c1f843bf0191f5c14675333366dfcb24d84113d7ea526307fdaaf
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.3":
   version: 2.1.3
   resolution: "@nodelib/fs.scandir@npm:2.1.3"
@@ -1665,15 +1672,6 @@ __metadata:
     eslint: ">=5.0.0"
     prettier: ">=1.13.0"
   checksum: 4e4df155790a20a7ceef9008bbc22a677a8f7e790e9ef613a049a78dfe0b5dc3726afcd4bfd2a8ce41abc88c9a11db029819a722f70b940da32a03629e7f7832
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-standard@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "eslint-plugin-standard@npm:4.0.1"
-  peerDependencies:
-    eslint: ">=5.0.0"
-  checksum: f08e162e5826c376b39dde8c015c32389e2a8430525ec645e16d8f0be141d9e1b8377c1f0af020db962ec07b8e9341519d07f1ca79a7e8ab6a6481a217c37be4
   languageName: node
   linkType: hard
 
@@ -4929,6 +4927,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"rollup-plugin-analyzer@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "rollup-plugin-analyzer@npm:3.3.0"
+  checksum: 6db42b2200ec7cfda8a339080bb79ec87dae7917e017f2d2edfb0369e9416b517a6ef99c460cca51c0c6c5caf729a8d1b3fc4bbe7e381f32013f70b130f4a6c8
+  languageName: node
+  linkType: hard
+
 "rollup-plugin-livereload@npm:^1.3.0":
   version: 1.3.0
   resolution: "rollup-plugin-livereload@npm:1.3.0"
@@ -5686,17 +5691,18 @@ fsevents@~2.1.2:
   version: 0.0.0-use.local
   resolution: "svelte-app@workspace:."
   dependencies:
+    "@mdi/js": ^5.3.45
     "@rollup/plugin-commonjs": ^14.0.0
     "@rollup/plugin-node-resolve": ^8.4.0
     eslint: ^7.5.0
     eslint-config-prettier: ^6.11.0
     eslint-plugin-prettier: ^3.1.4
-    eslint-plugin-standard: ^4.0.1
     eslint-plugin-svelte3: ^2.7.3
     node-sass: ^4.14.1
     prettier: ^2.0.5
     prettier-plugin-svelte: ^1.1.0
     rollup: ^2.22.1
+    rollup-plugin-analyzer: ^3.3.0
     rollup-plugin-livereload: ^1.3.0
     rollup-plugin-postcss: ^3.1.3
     rollup-plugin-svelte: ^5.2.3
