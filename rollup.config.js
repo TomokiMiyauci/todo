@@ -4,9 +4,10 @@ import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import sveltePreprocess from 'svelte-preprocess'
+// import {resolve as r} from "path";
+const preprocess = require('./svelte.config.js');
 // import analyze from 'rollup-plugin-analyzer'
 const production = !process.env.ROLLUP_WATCH
-
 export default {
   input: 'src/main.js',
   output: {
@@ -18,30 +19,16 @@ export default {
   plugins: [
     // typescript({ sourceMap: !production }),
     svelte({
-      preprocess: sveltePreprocess({
-        sourceMap: !production,
-        postcss: {
-          plugins: [require('autoprefixer')()]
-        },
-        defaults: {
-          script: 'typescript',
-          style: 'scss'
-        }
-      }),
-      // enable run-time checks when not in production
+      ...preprocess,
+         // enable run-time checks when not in production
       dev: !production,
       // we'll extract any component CSS out into
       // a separate file - better for performance
       css: (css) => {
         css.write('public/build/bundle.css')
       },
-      // extensions: ['.svelte'],
-
-      // emitCss: true,
     }),
-    // postcss({
-    //   extract: true,
-    // }),
+
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
