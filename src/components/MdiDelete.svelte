@@ -1,8 +1,8 @@
 <script>
   import SvgSlot from './SvgSlot.svelte'
-  import { mdiPlaylistEdit } from '@mdi/js'
+  import { mdiDelete } from '@mdi/js'
 </script>
 
 <SvgSlot>
-  <path d="{mdiPlaylistEdit}"></path>
+  <path d="{mdiDelete}"></path>
 </SvgSlot>
