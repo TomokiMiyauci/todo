@@ -9,12 +9,14 @@
     "dev": "rollup -c -w",
     "start": "sirv public",
     "lint": "yarn lint:eslint && yarn lint:stylelint",
-    "lint:eslint": "eslint . --ext .js,.svelte",
+    "lint:eslint": "eslint . --ext .ts,.svelte",
     "lint:stylelint": "stylelint src/*.svelte"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "autoprefixer": "^9.8.5",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
