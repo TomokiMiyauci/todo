@@ -3,9 +3,8 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
-import sveltePreprocessor from 'svelte-preprocess'
-import postcss from 'rollup-plugin-postcss'
-import analyze from 'rollup-plugin-analyzer'
+import sveltePreprocess from 'svelte-preprocess'
+// import analyze from 'rollup-plugin-analyzer'
 const production = !process.env.ROLLUP_WATCH
 
 export default {
@@ -17,7 +16,18 @@ export default {
     file: 'public/build/bundle.js',
   },
   plugins: [
+    // typescript({ sourceMap: !production }),
     svelte({
+      preprocess: sveltePreprocess({
+        sourceMap: !production,
+        postcss: {
+          plugins: [require('autoprefixer')()]
+        },
+        defaults: {
+          script: 'typescript',
+          style: 'scss'
+        }
+      }),
       // enable run-time checks when not in production
       dev: !production,
       // we'll extract any component CSS out into
@@ -25,13 +35,13 @@ export default {
       css: (css) => {
         css.write('public/build/bundle.css')
       },
-      extensions: ['.svelte'],
-      preprocess: sveltePreprocessor({ scss: true }),
-      emitCss: true,
+      // extensions: ['.svelte'],
+
+      // emitCss: true,
     }),
-    postcss({
-      extract: true,
-    }),
+    // postcss({
+    //   extract: true,
+    // }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
@@ -55,7 +65,7 @@ export default {
     // If we're building for production (npm run build
     // instead of npm run dev), minify
     production && terser(),
-    analyze(),
+    // analyze(),
   ],
   watch: {
     clearScreen: false,
