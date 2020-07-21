@@ -3,11 +3,13 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
-import sveltePreprocess from 'svelte-preprocess'
-// import {resolve as r} from "path";
+import alias from "@rollup/plugin-alias";
+import path from "path";
+
 const preprocess = require('./svelte.config.js');
 // import analyze from 'rollup-plugin-analyzer'
 const production = !process.env.ROLLUP_WATCH
+
 export default {
   input: 'src/main.js',
   output: {
@@ -17,6 +19,14 @@ export default {
     file: 'public/build/bundle.js',
   },
   plugins: [
+    alias({
+      entries: [
+        {
+          find: "@",
+          replacement: path.resolve(__dirname, "src", "components")
+        }
+      ]
+    }),
     // typescript({ sourceMap: !production }),
     svelte({
       ...preprocess,
