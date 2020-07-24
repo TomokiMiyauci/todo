@@ -1,18 +1,11 @@
 {
+  "eslint.packageManager": "yarn",
+  "prettier.packageManager": "yarn",
+  "stylelint.packageManager": "yarn",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "files.autoSave": "onWindowChange",
-  "eslint.validate": [
-    "javascript",
-    "svelte"
-  ],
-  "eslint.packageManager": "yarn",
-  "eslint.enable": true,
-  "editor.formatOnSave": true,
-  "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
-  "stylelint.stylelintPath": ".yarn/sdks/stylelint/lib/index.js",
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "eslint.format.enable": false,
+
+  "editor.formatOnSave": true
 }

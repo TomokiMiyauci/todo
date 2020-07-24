@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "plugins": ["svelte3", "import", "prettier"],
+  "extends": ["eslint:recommended", "prettier"],
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "processor": "svelte3/svelte3"
+    }
+  ],
+  "rules": {
+    "import/order": [
+      "error",
+      { "alphabetize": { "order": "asc", "caseInsensitive": true }, "newlines-between": "always" }
+    ]
+  }
+}
