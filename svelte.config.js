@@ -1,4 +1,4 @@
-const esbuild = require('esbuild')
+// const esbuild = require('esbuild')
 const sveltePreprocess = require('svelte-preprocess')
 const production = !process.env.ROLLUP_WATCH
 
@@ -16,12 +16,12 @@ module.exports = {
     },
     sourceMap: production,
 
-    typescript({ content }) {
-      const { js: code } = esbuild.transformSync(content, {
-        loader: 'ts',
-      })
+    // typescript({ content }) {
+    //   const { js: code } = esbuild.transformSync(content, {
+    //     loader: 'ts',
+    //   })
 
-      return { code }
-    },
+    //   return { code }
+    // },
   }),
 }
